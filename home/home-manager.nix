@@ -62,7 +62,7 @@ in
 
         programs.vscode = {
             enable = true;
-            extensions = (import ./vscode-extensions.nix) pkgs;
+            extensions = (import ./vscode/extensions.nix) pkgs;
         };
 
         programs.git = {
