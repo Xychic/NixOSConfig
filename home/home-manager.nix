@@ -3,6 +3,9 @@ let
     home-manager = builtins.fetchTarball{
         url = "https://github.com/nix-community/home-manager/archive/master.tar.gz";
     };
+    vscode-with-extensions = pkgs.vscode-with-extensions.override {
+      vscodeExtensions = (import ./vscode/extensions.nix) pkgs;
+    };
 in
 {
     imports = [
@@ -16,7 +19,7 @@ in
             fzf
             neofetch
             zsh
-            vscode
+            vscode-with-extensions
             exa
             oh-my-zsh
             ncdu
@@ -58,11 +61,6 @@ in
                 "--border"
                 "--inline-info"
             ];
-        };
-
-        programs.vscode = {
-            enable = true;
-            extensions = (import ./vscode/extensions.nix) pkgs;
         };
 
         programs.git = {
